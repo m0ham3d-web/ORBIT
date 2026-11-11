@@ -1,0 +1,405 @@
+/* =================================
+   ORBIT - Task Manager
+================================= */
+
+/* Task Toolbar */
+
+.tasks-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.tasks-filters {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.task-filter {
+  padding: 9px 16px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s ease;
+}
+
+.task-filter:hover,
+.task-filter.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+/* Task Search */
+
+.task-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 10px 14px;
+  min-width: 220px;
+}
+
+.task-search i {
+  color: var(--text-muted);
+}
+
+.task-search input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 13px;
+}
+
+.task-search input::placeholder {
+  color: var(--text-muted);
+}
+
+/* Task Board */
+
+.task-board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+
+.task-column {
+  min-width: 0;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 15px;
+  min-height: 400px;
+}
+
+.task-column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.task-column-title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.task-column-count {
+  background: var(--bg-hover);
+  color: var(--text-secondary);
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+/* Status Indicators */
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.status-todo {
+  background: var(--blue);
+}
+
+.status-progress {
+  background: var(--orange);
+}
+
+.status-completed {
+  background: var(--green);
+}
+
+/* Task Cards */
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 15px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.task-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--primary);
+}
+
+.task-card h4 {
+  color: var(--text-primary);
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.task-card p {
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.task-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.task-priority {
+  font-size: 11px;
+  padding: 5px 9px;
+  border-radius: 6px;
+}
+
+.priority-high {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.1);
+}
+
+.priority-medium {
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.1);
+}
+
+.priority-low {
+  color: #34d399;
+  background: rgba(52, 211, 153, 0.1);
+}
+
+.task-date {
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.task-empty {
+  color: var(--text-muted);
+  font-size: 12px;
+  text-align: center;
+  padding: 35px 10px;
+  border: 1px dashed var(--border-color);
+  border-radius: 10px;
+}
+
+/* Responsive */
+
+@media (max-width: 1000px) {
+  .task-board {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .task-board {
+    grid-template-columns: 1fr;
+  }
+
+  .task-search {
+    width: 100%;
+  }
+
+  .tasks-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .tasks-filters {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 5px;
+  }
+
+  .task-filter {
+    white-space: nowrap;
+  }
+}
+
+/* ==============================
+   Task Modal
+============================== */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(5px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 2000;
+}
+
+.modal-overlay.active {
+  display: flex;
+  animation: modalFade 0.2s ease;
+}
+
+.task-modal {
+  width: 100%;
+  max-width: 520px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  padding: 25px;
+  animation: modalSlide 0.25s ease;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 25px;
+}
+
+.modal-header h3 {
+  color: var(--text-primary);
+  font-size: 20px;
+  margin-bottom: 7px;
+}
+
+.modal-header p {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.modal-close {
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 9px;
+  background: var(--bg-hover);
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-bottom: 18px;
+  flex: 1;
+  min-width: 0;
+}
+
+.form-group label {
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 9px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  outline: none;
+  font-family: inherit;
+  font-size: 13px;
+  transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--primary);
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.cancel-btn {
+  padding: 11px 18px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+.modal-actions .primary-btn {
+  border: none;
+}
+
+@keyframes modalFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlide {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 500px) {
+  .task-modal {
+    padding: 18px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .modal-actions {
+    flex-direction: column-reverse;
+  }
+
+  .modal-actions button {
+    width: 100%;
+  }
+}

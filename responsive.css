@@ -1,0 +1,140 @@
+@media (max-width: 1100px) {
+  .main-area {
+    padding: 0 25px 40px;
+  }
+  .sidebar {
+    width: 220px;
+  }
+  .main-area {
+    margin-left: 220px;
+  }
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 760px) {
+  .sidebar {
+    transform: translateX(-105%);
+    transition: transform 0.25s;
+    box-shadow: var(--shadow);
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  .main-area {
+    margin-left: 0;
+    padding: 0 17px 35px;
+  }
+  .topbar {
+    height: 68px;
+    margin-bottom: 27px;
+  }
+  .mobile-menu {
+    display: grid;
+  }
+  .breadcrumb {
+    margin-right: auto;
+    margin-left: 12px;
+  }
+  .top-actions {
+    gap: 7px;
+  }
+  .top-actions .search-box {
+    display: none;
+  }
+  .welcome-row,
+  .page-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .welcome-row .primary-btn,
+  .page-heading .primary-btn {
+    align-self: flex-start;
+  }
+  .stats-grid {
+    gap: 9px;
+  }
+  .stat-card {
+    padding: 14px;
+  }
+  .stat-card > strong {
+    font-size: 23px;
+  }
+  .board {
+    grid-template-columns: 1fr;
+  }
+  .board-column {
+    min-height: 180px;
+  }
+  .task-list {
+    min-height: 80px;
+  }
+  .toolbar {
+    flex-wrap: wrap;
+  }
+  .task-search {
+    flex-basis: 100%;
+  }
+  .toolbar select {
+    flex: 1;
+    min-width: 110px;
+  }
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+  .calendar-cell {
+    min-height: 62px;
+    padding: 5px;
+  }
+  .calendar-event {
+    font-size: 7px;
+  }
+  .calendar-grid {
+    gap: 3px;
+  }
+  .calendar-day-label {
+    font-size: 8px;
+  }
+  .panel {
+    padding: 16px;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  .analytics-stats {
+    grid-template-columns: 1fr;
+  }
+  .top-actions .notification-btn {
+    display: none;
+  }
+}
+@media (max-width: 420px) {
+  .main-area {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .stat-card > small {
+    font-size: 9px;
+  }
+  .stat-top {
+    font-size: 10px;
+  }
+  .calendar-cell {
+    min-height: 53px;
+  }
+  .calendar-event {
+    display: none;
+  }
+  .profile {
+    padding-top: 13px;
+  }
+}

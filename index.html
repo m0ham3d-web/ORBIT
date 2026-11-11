@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="ORBIT — your personal productivity workspace"
+    />
+    <title>ORBIT — Workspace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="responsive.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <a class="brand" href="#dashboard"
+          ><span class="brand-mark">O</span><span>ORBIT</span></a
+        >
+        <div class="workspace-label">WORKSPACE</div>
+        <nav class="nav-list" aria-label="Main navigation">
+          <button class="nav-link active" data-page="dashboard">
+            <span>◫</span> Overview
+          </button>
+          <button class="nav-link" data-page="tasks">
+            <span>☷</span> My Tasks <b id="navTaskCount">0</b>
+          </button>
+          <button class="nav-link" data-page="projects">
+            <span>▦</span> Projects
+          </button>
+          <button class="nav-link" data-page="calendar">
+            <span>▦</span> Calendar
+          </button>
+          <button class="nav-link" data-page="focus">
+            <span>◎</span> Focus Room
+          </button>
+          <button class="nav-link" data-page="analytics">
+            <span>⌁</span> Analytics
+          </button>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="upgrade-card">
+            <div class="upgrade-icon">✦</div>
+            <strong>Make room for focus.</strong>
+            <p>A calmer way to get meaningful work done.</p>
+            <button id="quickFocusBtn">Start focusing <span>↗</span></button>
+          </div>
+          <button class="nav-link" data-page="settings">
+            <span>⚙</span> Settings
+          </button>
+          <div class="profile">
+            <div class="avatar">M</div>
+            <div>
+              <strong>My Workspace</strong><small>Personal account</small>
+            </div>
+            <span class="profile-more">•••</span>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-area">
+        <header class="topbar">
+          <button
+            class="mobile-menu icon-btn"
+            id="menuBtn"
+            aria-label="Open menu"
+          >
+            ☰
+          </button>
+          <div class="breadcrumb">
+            <span>Workspace</span><i>/</i
+            ><strong id="pageTitle">Overview</strong>
+          </div>
+          <div class="top-actions">
+            <label class="search-box"
+              ><span>⌕</span
+              ><input
+                id="globalSearch"
+                type="search"
+                placeholder="Search anything..."
+              /><kbd>⌘ K</kbd></label
+            >
+            <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
+              ☼
+            </button>
+            <button
+              class="icon-btn notification-btn"
+              id="notificationBtn"
+              aria-label="Notifications"
+            >
+              ♧<em></em>
+            </button>
+            <button class="avatar small-avatar" aria-label="Profile">M</button>
+          </div>
+        </header>
+
+        <section class="page-section active" id="dashboard">
+          <div class="welcome-row">
+            <div>
+              <p class="eyebrow" id="todayLabel">YOUR WORKSPACE</p>
+              <h1>Good work starts <span>with clarity.</span></h1>
+              <p class="muted">
+                A little progress every day adds up. Here's your overview.
+              </p>
+            </div>
+            <button class="primary-btn" data-open-task>＋ New task</button>
+          </div>
+          <div class="stats-grid">
+            <article class="stat-card">
+              <div class="stat-top">
+                <span>Total tasks</span
+                ><span class="stat-symbol purple">☷</span>
+              </div>
+              <strong id="statTotal">0</strong
+              ><small>Across your workspace</small>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top">
+                <span>In progress</span><span class="stat-symbol blue">◷</span>
+              </div>
+              <strong id="statProgress">0</strong
+              ><small>Currently on your plate</small>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top">
+                <span>Completed</span><span class="stat-symbol green">✓</span>
+              </div>
+              <strong id="statCompleted">0</strong
+              ><small>Things you've finished</small>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top">
+                <span>Completion rate</span
+                ><span class="stat-symbol orange">↗</span>
+              </div>
+              <strong id="statRate">0%</strong
+              ><small>Keep the momentum going</small>
+            </article>
+          </div>
+          <div class="dashboard-grid">
+            <article class="panel task-overview">
+              <div class="panel-heading">
+                <div>
+                  <h2>Priority tasks</h2>
+                  <p class="muted">The things worth your attention</p>
+                </div>
+                <button class="text-btn" data-go="tasks">View all ↗</button>
+              </div>
+              <div id="priorityPreview" class="preview-list empty-state">
+                No tasks yet. Add one to get started.
+              </div>
+            </article>
+            <article class="panel progress-panel">
+              <div class="panel-heading">
+                <div>
+                  <h2>Weekly progress</h2>
+                  <p class="muted">Your completed work</p>
+                </div>
+                <span class="period-pill">This week</span>
+              </div>
+              <div class="progress-ring-wrap">
+                <div class="progress-ring" id="progressRing">
+                  <div>
+                    <strong id="ringValue">0%</strong><small>completed</small>
+                  </div>
+                </div>
+              </div>
+              <div class="progress-legend">
+                <span><i class="dot purple-dot"></i> Completed</span
+                ><strong id="ringCount">0 tasks</strong>
+              </div>
+            </article>
+          </div>
+          <article class="panel activity-panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Coming up</h2>
+                <p class="muted">Tasks with upcoming due dates</p>
+              </div>
+              <button class="text-btn" data-go="calendar">
+                Open calendar ↗
+              </button>
+            </div>
+            <div id="upcomingList" class="upcoming-list empty-state">
+              Nothing scheduled yet.
+            </div>
+          </article>
+        </section>
+
+        <section class="page-section" id="tasks">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">STAY ON TRACK</p>
+              <h1>My tasks</h1>
+              <p class="muted">Plan it. Prioritize it. Make it happen.</p>
+            </div>
+            <button class="primary-btn" data-open-task>＋ New task</button>
+          </div>
+          <div class="toolbar panel">
+            <label class="search-box task-search"
+              ><span>⌕</span
+              ><input
+                id="taskSearch"
+                type="search"
+                placeholder="Search tasks..." /></label
+            ><select id="priorityFilter">
+              <option value="all">All priorities</option>
+              <option value="high">High priority</option>
+              <option value="medium">Medium priority</option>
+              <option value="low">Low priority</option></select
+            ><select id="projectFilter">
+              <option value="all">All projects</option></select
+            ><button class="secondary-btn" id="clearFilters">
+              Clear filters
+            </button>
+          </div>
+          <div class="board">
+            <div class="board-column">
+              <div class="column-heading">
+                <span class="column-dot todo-dot"></span><strong>To do</strong
+                ><b id="todoCount">0</b>
+              </div>
+              <div class="task-list" id="todoList" data-status="todo"></div>
+            </div>
+            <div class="board-column">
+              <div class="column-heading">
+                <span class="column-dot progress-dot"></span
+                ><strong>In progress</strong><b id="progressCount">0</b>
+              </div>
+              <div
+                class="task-list"
+                id="progressList"
+                data-status="progress"
+              ></div>
+            </div>
+            <div class="board-column">
+              <div class="column-heading">
+                <span class="column-dot done-dot"></span
+                ><strong>Completed</strong><b id="completedCount">0</b>
+              </div>
+              <div
+                class="task-list"
+                id="completedList"
+                data-status="completed"
+              ></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="page-section" id="projects">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">BIG PICTURE</p>
+              <h1>Projects</h1>
+              <p class="muted">Group your tasks around what matters.</p>
+            </div>
+            <button class="primary-btn" id="addProjectBtn">
+              ＋ New project
+            </button>
+          </div>
+          <div class="project-grid" id="projectGrid"></div>
+        </section>
+
+        <section class="page-section" id="calendar">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">PLAN AHEAD</p>
+              <h1>Calendar</h1>
+              <p class="muted">A simple view of what's coming up.</p>
+            </div>
+            <button class="secondary-btn" data-go="tasks">View tasks</button>
+          </div>
+          <div class="panel calendar-panel">
+            <div class="calendar-header">
+              <button class="icon-btn" id="prevMonth">‹</button>
+              <h2 id="calendarMonth"></h2>
+              <button class="icon-btn" id="nextMonth">›</button>
+            </div>
+            <div class="calendar-grid" id="calendarGrid"></div>
+          </div>
+        </section>
+
+        <section class="page-section" id="focus">
+          <div class="focus-page">
+            <p class="eyebrow">ONE THING AT A TIME</p>
+            <h1>Enter your <span>focus room.</span></h1>
+            <p class="muted">
+              Choose one task, set a gentle timer, and give it your attention.
+            </p>
+            <div class="focus-card panel">
+              <div class="focus-label">FOCUS SESSION</div>
+              <div class="timer" id="timerDisplay">25:00</div>
+              <div class="timer-sub" id="timerStatus">Ready when you are</div>
+              <div class="timer-controls">
+                <button class="primary-btn" id="timerStart">
+                  Start session</button
+                ><button class="secondary-btn" id="timerReset">Reset</button>
+              </div>
+              <div class="timer-presets">
+                <button class="preset active" data-minutes="25">25 min</button
+                ><button class="preset" data-minutes="15">15 min</button
+                ><button class="preset" data-minutes="5">5 min</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="page-section" id="analytics">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">SEE YOUR MOMENTUM</p>
+              <h1>Analytics</h1>
+              <p class="muted">Understand your progress without the noise.</p>
+            </div>
+          </div>
+          <div class="stats-grid analytics-stats">
+            <article class="stat-card">
+              <span>Tasks created</span><strong id="analyticsTotal">0</strong>
+            </article>
+            <article class="stat-card">
+              <span>Tasks completed</span><strong id="analyticsDone">0</strong>
+            </article>
+            <article class="stat-card">
+              <span>Still active</span><strong id="analyticsActive">0</strong>
+            </article>
+          </div>
+          <article class="panel chart-panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Task distribution</h2>
+                <p class="muted">How your tasks are spread</p>
+              </div>
+            </div>
+            <div class="bar-chart" id="analyticsChart"></div>
+          </article>
+        </section>
+
+        <section class="page-section" id="settings">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">MAKE IT YOURS</p>
+              <h1>Settings</h1>
+              <p class="muted">Your workspace, your preferences.</p>
+            </div>
+          </div>
+          <div class="settings-layout">
+            <article class="panel settings-card">
+              <h2>Appearance</h2>
+              <p class="muted">Choose the theme that feels right.</p>
+              <div class="setting-row">
+                <div>
+                  <strong>Dark mode</strong
+                  ><small>Switch between light and dark appearance.</small>
+                </div>
+                <button
+                  class="switch"
+                  id="themeSwitch"
+                  role="switch"
+                  aria-checked="true"
+                >
+                  <span></span>
+                </button>
+              </div>
+            </article>
+            <article class="panel settings-card">
+              <h2>Your data</h2>
+              <p class="muted">
+                Your information is stored locally in this browser.
+              </p>
+              <div class="setting-row">
+                <div>
+                  <strong>Export workspace</strong
+                  ><small>Download a backup of tasks and projects.</small>
+                </div>
+                <button class="secondary-btn" id="exportBtn">
+                  Export JSON
+                </button>
+              </div>
+              <div class="setting-row">
+                <div>
+                  <strong>Import workspace</strong
+                  ><small>Restore a previous ORBIT backup.</small>
+                </div>
+                <label class="secondary-btn file-label"
+                  >Import JSON<input
+                    type="file"
+                    id="importInput"
+                    accept="application/json"
+                /></label>
+              </div>
+              <div class="setting-row">
+                <div>
+                  <strong>Reset workspace</strong
+                  ><small>Remove all locally saved tasks and projects.</small>
+                </div>
+                <button class="danger-btn" id="resetBtn">Reset data</button>
+              </div>
+            </article>
+            <div class="version-note">
+              ORBIT Workspace · Built with HTML, CSS & JavaScript
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="taskModal" aria-hidden="true">
+      <div class="modal panel">
+        <div class="modal-heading">
+          <div>
+            <p class="eyebrow">TASK DETAILS</p>
+            <h2 id="taskModalTitle">Create a task</h2>
+          </div>
+          <button class="icon-btn" data-close-modal aria-label="Close">
+            ×
+          </button>
+        </div>
+        <form id="taskForm">
+          <input type="hidden" id="editTaskId" /><label
+            >Task title<input
+              id="taskTitle"
+              maxlength="90"
+              placeholder="What needs to get done?"
+              required /></label
+          ><label
+            >Description<textarea
+              id="taskDescription"
+              rows="3"
+              maxlength="400"
+              placeholder="Add a few details (optional)"
+            ></textarea>
+          </label>
+          <div class="form-row">
+            <label
+              >Priority<select id="taskPriority">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+              </select></label
+            ><label
+              >Status<select id="taskStatus">
+                <option value="todo">To do</option>
+                <option value="progress">In progress</option>
+                <option value="completed">Completed</option>
+              </select></label
+            >
+          </div>
+          <div class="form-row">
+            <label>Due date<input id="taskDate" type="date" /></label
+            ><label
+              >Project<select id="taskProject">
+                <option value="">No project</option>
+              </select></label
+            >
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="secondary-btn" data-close-modal>
+              Cancel</button
+            ><button type="submit" class="primary-btn">Save task</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal-backdrop" id="projectModal" aria-hidden="true">
+      <div class="modal panel">
+        <div class="modal-heading">
+          <div>
+            <p class="eyebrow">PROJECT</p>
+            <h2>Create a project</h2>
+          </div>
+          <button class="icon-btn" data-close-project>×</button>
+        </div>
+        <form id="projectForm">
+          <label
+            >Project name<input
+              id="projectName"
+              maxlength="50"
+              placeholder="e.g. Website redesign"
+              required /></label
+          ><label
+            >Short description<textarea
+              id="projectDescription"
+              rows="3"
+              maxlength="160"
+              placeholder="What is this project about?"
+            ></textarea>
+          </label>
+          <div class="modal-actions">
+            <button type="button" class="secondary-btn" data-close-project>
+              Cancel</button
+            ><button class="primary-btn">Create project</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="app.js"></script>
+  </body>
+</html>

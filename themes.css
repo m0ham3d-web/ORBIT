@@ -1,0 +1,96 @@
+/* ==============================
+   ORBIT - Theme System
+============================== */
+
+/* Dark Theme */
+body[data-theme="dark"] {
+  --bg-primary: #0b1120;
+  --bg-secondary: #111827;
+  --bg-card: #151f32;
+  --bg-hover: #1d2940;
+
+  --border-color: #263349;
+
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+
+  --primary: #8b5cf6;
+  --primary-hover: #7c3aed;
+
+  --green: #22c55e;
+  --blue: #3b82f6;
+  --orange: #f59e0b;
+
+  color-scheme: dark;
+}
+
+/* Light Theme */
+body[data-theme="light"] {
+  --bg-primary: #f5f6fa;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --bg-hover: #f1f0f9;
+
+  --border-color: #e2e5ed;
+
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+
+  --primary: #7c3aed;
+  --primary-hover: #6d28d9;
+
+  --green: #16a34a;
+  --blue: #2563eb;
+  --orange: #d97706;
+
+  color-scheme: light;
+}
+
+/* Smooth Theme Transition */
+body,
+.sidebar,
+.topbar,
+.stat-card,
+.dashboard-card,
+button,
+a,
+input,
+textarea,
+select {
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+/* Light Theme Adjustments */
+body[data-theme="light"] .sidebar {
+  box-shadow: 2px 0 15px rgba(15, 23, 42, 0.04);
+}
+
+body[data-theme="light"] .topbar {
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.03);
+}
+
+body[data-theme="light"] .stat-card,
+body[data-theme="light"] .dashboard-card {
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.04);
+}
+
+body[data-theme="light"] .nav-link:hover,
+body[data-theme="light"] .nav-link.active {
+  background-color: #f0eaff;
+}
+
+body[data-theme="light"] .primary-btn {
+  color: #ffffff;
+}
+
+/* Selection */
+::selection {
+  background: var(--primary);
+  color: #ffffff;
+}
